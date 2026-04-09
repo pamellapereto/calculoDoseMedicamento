@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>MedicHora</title>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <div class="img">
+          <img src="img/pill.png" />
+        </div>
+
+        <div class="title">
+          <h1>Calculadora de Dosagem Diária</h1>
+          <p>Preencha as informações abaixo para calcular sua dosagem.</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="dados-pessoais">
+        <form action="" id="dados-pessoais">
+          <div class="dados-pessoais">
+
+            <div class="col-1">
+              <label for="nomeCompletinho">Nome: </label>
+              <input type="text" placeholder="Nome completo" name="nomeCompletinho">
+            </div>
+
+
+
+            <div class="col-2">
+              <label for="email">E-mail: </label>
+              <input type="email" placeholder="exemplo@email.com" name="email">
+            </div>
+
+            <div class="col-3">
+              <label for="data">Data: </label>
+              <input type="datetime-local" name="data">
+            </div>
+
+          </div>
+        </form>
+      </section>
+
+      <section id="medicamento"></section>
+
+      <section id="dosagem"></section>
+
+      <section id="calculo"></section>
+
+      <section id="resultado"></section>
+    </main>
+
+    <!-- nav, aside, header, main (section => pode ter form), footer -->
+  </body>
+</html>
