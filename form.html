@@ -22,44 +22,99 @@
     </header>
 
     <main>
-      <section id="dados-pessoais">
-        <form action="" id="dados-pessoais">
+      <form action="" id="form">
+        <section id="dados-pessoais">
           <div class="dados-pessoais">
-
             <div class="col-1">
-              <label for="nome">Nome: </label>
-              <input id="nome" type="text" placeholder="Nome completo" name="nome">
+              <label for="nome">Nome </label>
+              <input
+                id="nome"
+                type="text"
+                placeholder="Nome completo"
+                name="nome"
+              />
+              <!-- <a href="https://google.com">Acessar Google</a> -->
             </div>
 
-
-
             <div class="col-2">
-              <label for="email">E-mail: </label>
-              <input id="email" type="email" placeholder="exemplo@email.com" name="email">
+              <label for="email">E-mail </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="exemplo@email.com"
+                name="email"
+              />
             </div>
 
             <div class="col-3">
-              <label for="data">Data: </label>
-              <input id="data" type="datetime-local" name="data">
+              <label for="data">Data </label>
+              <input id="data" type="datetime-local" name="data" />
             </div>
-
           </div>
-        </form>
-      </section>
+        </section>
 
-      <section id="medicamento"></section>
+        <section id="dados-medicamento">
+          <div class="dados-medicamento">
+            <div class="col-1">
+              <label for="medicamento">Nome do medicamento </label>
+               <input
+                id="medicamento"
+                type="text"
+                placeholder="Nome do medicamento"
+                name="medicamento"
+              />
+            </div>
+            <div class="col-2">
+              <label for="default">Selecionar medicamento padrão</label>
+              <input id="default" type="checkbox" name="default"/>
+            </div>
+          </div>
+        </section>
 
-      <section id="dosagem"></section>
+        <section id="dados-dosagem">
+          <div class="dados-dosagem">
+            <div class="col-1">
+              <p>Selecione a dosagem (mg) </p>
+              <div class="col-2">
+               <input
+                id="dosagem-250mg"
+                type="radio"
+                name="dosagem"
+              />
+              <label for="dosagem-250mg">250mg</label>
+              
+               <input
+                id="dosagem-500mg"
+                type="radio"
+                name="dosagem"
+              />
+              <label for="dosagem-500mg">500mg</label>
+              
+               <input
+                id="dosagem-750mg"
+                type="radio"
+                name="dosagem"
+              />
+              <label for="dosagem-750mg">750mg</label>
+            </div>
+          </div>
+            <div class="col-3">
+               <label for="qtd-dosagem">Quantidade de doses por dia</label>
+                <input
+                id="qtd-dosagem"
+                type="number"
+                name="qtd-dosagem"
+              />
+            </div>
+        </section>
 
-      <section id="calculo"></section>
+        <section id="calculo"></section>
 
-      <section id="resultado"></section>
+        <section id="resultado"></section>
+      </form>
     </main>
-
 
     <script src="js/app.js"></script>
     <script src="js/logic.js"></script>
-
-
   </body>
 </html>

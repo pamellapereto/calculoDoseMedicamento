@@ -37,6 +37,56 @@ calcularCargaHoraDiaria(cargaHoraria, dias);
 console.log("A carga horária diária é o resultado de " + cargaHoraria + " horas dividido " +
     "por " + dias + " dias = " + resultado + " horas");
 
+//------------------------------------------------------------//
+
+console.log("\nAtividade de Correção de 15/04");
+var nomeUsuario = "Pamella Pereto";
+var emailMedic = "pamellapereto@gmail.com";
+var data = "2026-04-17T19:53";
+var nomeMedicamento = "loratadina";
+var dosagem = 100;
+var quantidade = 2;
+var resultadoDosagem;
+
+console.log(
+    "Os tipos das variáveis são:\n" + 
+    "var nomeUsuario: tipo " + typeof(nomeUsuario) + "\n" +
+    "var email: tipo " + typeof(emailMedic) + "\n" +
+    "var data: tipo " + typeof(data) + "\n" +
+    "var nomeMedicamento: tipo " + typeof(nomeMedicamento) + "\n" +
+    "var dosagem: tipo " + typeof(dosagem) + "\n" +
+    "var quantidade: tipo " + typeof(quantidade)
+);
+
+function calcularDosagem(dosagem, quantidade) {
+    resultadoDosagem = dosagem * quantidade;
+    return resultadoDosagem;
+}
+
+calcularDosagem(dosagem, quantidade);
+
+// console.log(
+//     "\nDados do paciente: \n" +
+//     "Nome completo: " + nomeUsuario + "\n" +
+//     "E-mail: " + emailMedic + "\n" +
+//     "Data: " + data + "\n" +
+//     "Nome do medicamento: " + nomeMedicamento + "\n" +
+//     "Dosagem: " + dosagem + "mg\n" +
+//     "Quantidade de vezes ao dia: " + quantidade + "\n" +
+//     "Dosagem diária: " + resultadoDosagem + "mg"
+// );
 
 
+console.log(
+    `
+     Dados do paciente:
+     Nome completo: ${nomeUsuario}
+     E-mail: ${emailMedic}
+     Data: ${data}
+     Nome do medicamento: ${nomeMedicamento}
+     Dosagem: ${dosagem}
+     Quantidade de vezes ao dia: ${quantidade}
+     Dosagem diária: ${resultadoDosagem}
+    `  
+);
 
