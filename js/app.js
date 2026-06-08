@@ -3,12 +3,38 @@ const inputEmail = document.getElementById("email");
 const inputMedicamento = document.getElementById("medicamento");
 const inputData = document.getElementById("data");
 const inputQtd = document.getElementById("qtd-dosagem");
+const opDosagem = document.querySelectorAll("input[name='dosagem']");
+const btnResetar = document.createElement("button");
+
+const sectionResetar = document.getElementById("resetar");
+sectionResetar.appendChild(btnResetar);
+btnResetar.textContent = "Limpar formulário";
+sectionResetar.style.textAlign = "center";
+sectionResetar.style.marginTop = "20px";
+
+btnResetar.addEventListener("click", resetar);
 
 const keyNome = "mh-nome";
 const keyEmail = "mh-email";
 const keyMedicamento = "mh-medicamento";
 const keyData = "mh-data";
 const keyQtd = "mh-qtd";
+const keyDosagem = "mh-dosagem";
+
+
+function salvarDosagem() {
+    console.clear();
+  for (let i = 0; i < opDosagem.length; i++) {
+    if (opDosagem[i].checked) {
+      console.log(typeof(opDosagem[i].value) + " - " + opDosagem[i].value);
+      localStorage.setItem("mh-dosagem", opDosagem[i].value);
+    }
+  }
+}
+
+for (let i = 0; i < opDosagem.length; i++) {
+  opDosagem[i].addEventListener("change", salvarDosagem);
+}
 
 function salvarNome() {
   localStorage.setItem("mh-nome", inputNome.value);
@@ -41,6 +67,7 @@ function carregarDados() {
   const medicamentoSalvo = localStorage.getItem("mh-medicamento");
   const dataSalva = localStorage.getItem("mh-data");
   const qtdSalva = localStorage.getItem("mh-qtd");
+  const dosagemSalva = localStorage.getItem("mh-dosagem");
 
   if (nomeSalvo !== null) {
     inputNome.value = nomeSalvo;
@@ -60,6 +87,14 @@ function carregarDados() {
 
   if (qtdSalva !== null) {
     inputQtd.value = qtdSalva;
+  }
+
+  if(dosagemSalva !== null) {
+    for (let i = 0; i < opDosagem.length; i++) {
+      if (opDosagem[i].value === dosagemSalva) {
+        opDosagem[i].checked = true;
+      }
+    }
   }
 }
 
