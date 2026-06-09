@@ -5,6 +5,7 @@ const inputData = document.getElementById("data");
 const inputQtd = document.getElementById("qtd-dosagem");
 const opDosagem = document.querySelectorAll("input[name='dosagem']");
 const btnResetar = document.createElement("button");
+const inputUsoContinuo = document.getElementById("default");  // checkbox de uso contínuo
 
 const sectionResetar = document.getElementById("resetar");
 sectionResetar.appendChild(btnResetar);
@@ -20,6 +21,13 @@ const keyMedicamento = "mh-medicamento";
 const keyData = "mh-data";
 const keyQtd = "mh-qtd";
 const keyDosagem = "mh-dosagem";
+const keyUsoContinuo = "mh-uso-continuo"; // chave para o uso contínuo
+  
+function salvarUsoContinuo() { // função para salvar o estado do checkbox de uso contínuo
+  if (inputUsoContinuo.checked) {
+    localStorage.setItem("mh-uso-continuo", "true");
+  }
+}
 
 
 function salvarDosagem() {
@@ -31,6 +39,7 @@ function salvarDosagem() {
     }
   }
 }
+
 
 for (let i = 0; i < opDosagem.length; i++) {
   opDosagem[i].addEventListener("change", salvarDosagem);
