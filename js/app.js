@@ -6,6 +6,19 @@ const inputQtd = document.getElementById("qtd-dosagem");
 const opDosagem = document.querySelectorAll("input[name='dosagem']");
 const btnResetar = document.createElement("button");
 const inputUsoContinuo = document.getElementById("default");  // checkbox de uso contínuo
+const table = document.createElement("table"); // criação tabela (container)
+const tbHead = document.createElement("thead"); // cabeçalho da tabela
+const tr = document.createElement("tr"); //1 linha no cabeçalho da tabela (r = row/linha)
+const thNomeMedic = document.createElement("th");  //coluna para o nome do medicamento
+const thQtdMedic = document.createElement("th");  //coluna para a quantidade
+const thDosagem = document.createElement("th"); //coluna para a dosagem
+const thData = document.createElement("th");   //coluna para a data
+
+thNomeMedic.textContent = "Medicamento";
+thDosagem.textContent = "Dosagem";
+thQtdMedic.textContent = "Quantidade";
+thData.textContent = "Data";
+
 
 const sectionResetar = document.getElementById("resetar");
 sectionResetar.appendChild(btnResetar);
@@ -14,6 +27,17 @@ sectionResetar.style.textAlign = "center";
 sectionResetar.style.marginTop = "20px";
 
 btnResetar.addEventListener("click", resetar);
+
+//identificada a seção pelo id
+const sectionTb_listaMedicamentos = document.getElementById("tb-listaMedicamentos");
+sectionTb_listaMedicamentos.appendChild(table); //incorporou tabela nessa seção
+table.appendChild(tbHead);
+tbHead.appendChild(tr);
+tr.appendChild(thNomeMedic);
+tr.appendChild(thDosagem);
+tr.appendChild(thQtdMedic);
+tr.appendChild(thData);
+
 
 const keyNome = "mh-nome";
 const keyEmail = "mh-email";
@@ -113,3 +137,4 @@ function resetar() {
 
 // resetar();
 carregarDados();
+
