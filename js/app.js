@@ -13,6 +13,7 @@ const thNomeMedic = document.createElement("th");  //coluna para o nome do medic
 const thQtdMedic = document.createElement("th");  //coluna para a quantidade
 const thDosagem = document.createElement("th"); //coluna para a dosagem
 const thData = document.createElement("th");   //coluna para a data
+const btnAdd = document.getElementById("add") //botao identificado 
 
 thNomeMedic.textContent = "Medicamento";
 thDosagem.textContent = "Dosagem";
@@ -27,16 +28,26 @@ sectionResetar.style.textAlign = "center";
 sectionResetar.style.marginTop = "20px";
 
 btnResetar.addEventListener("click", resetar);
+btnAdd.addEventListener("click", saveLocal); //ao interagir com o botão, salvar no localStorage
 
 //identificada a seção pelo id
 const sectionTb_listaMedicamentos = document.getElementById("tb-listaMedicamentos");
 sectionTb_listaMedicamentos.appendChild(table); //incorporou tabela nessa seção
+
 table.appendChild(tbHead);
 tbHead.appendChild(tr);
 tr.appendChild(thNomeMedic);
 tr.appendChild(thDosagem);
 tr.appendChild(thQtdMedic);
 tr.appendChild(thData);
+
+sectionTb_listaMedicamentos.style.display = "flex";
+sectionTb_listaMedicamentos.style.justifyContent = "space-around";
+sectionTb_listaMedicamentos.style.marginTop = "3rem";
+
+tr.style.display = "flex";
+tr.style.gap = "2rem";  //Nessa única linha tem um distanciamento (gap) de uma coluna para a outra
+
 
 
 const keyNome = "mh-nome";
@@ -88,11 +99,16 @@ function salvarQtd() {
   localStorage.setItem("mh-qtd", inputQtd.value);
 }
 
+
+function saveLocal() {
+  salvarMedicamento();
+  salvarDosagem();
+  salvarQtd();
+  salvarData();
+}
+
 inputNome.addEventListener("input", salvarNome);
 inputEmail.addEventListener("input", salvarEmail);
-inputMedicamento.addEventListener("input", salvarMedicamento);
-inputData.addEventListener("change", salvarData);
-inputQtd.addEventListener("change", salvarQtd);
 
 function carregarDados() {
   const nomeSalvo = localStorage.getItem("mh-nome");
