@@ -46,7 +46,7 @@ sectionTb_listaMedicamentos.style.justifyContent = "space-around";
 sectionTb_listaMedicamentos.style.marginTop = "3rem";
 
 tr.style.display = "flex";
-tr.style.gap = "2rem";  //Nessa única linha tem um distanciamento (gap) de uma coluna para a outra
+tr.style.gap = "1rem";  //Nessa única linha tem um distanciamento (gap) de uma coluna para a outra
 
 
 
@@ -62,6 +62,9 @@ function salvarUsoContinuo() { // função para salvar o estado do checkbox de u
   if (inputUsoContinuo.checked) {
     localStorage.setItem("mh-uso-continuo", "true");
   }
+  else {
+    localStorage.setItem("mh-uso-continuo", "false");
+  }
 }
 
 
@@ -76,10 +79,6 @@ function salvarDosagem() {
 }
 
 
-for (let i = 0; i < opDosagem.length; i++) {
-  opDosagem[i].addEventListener("change", salvarDosagem);
-}
-
 function salvarNome() {
   localStorage.setItem("mh-nome", inputNome.value);
 }
@@ -93,6 +92,7 @@ function salvarMedicamento() {
 
 function salvarData() {
   localStorage.setItem("mh-data", inputData.value);
+
 }
 
 function salvarQtd() {
@@ -105,6 +105,7 @@ function saveLocal() {
   salvarDosagem();
   salvarQtd();
   salvarData();
+  salvarUsoContinuo();
 }
 
 inputNome.addEventListener("input", salvarNome);
@@ -117,6 +118,7 @@ function carregarDados() {
   const dataSalva = localStorage.getItem("mh-data");
   const qtdSalva = localStorage.getItem("mh-qtd");
   const dosagemSalva = localStorage.getItem("mh-dosagem");
+  const usoContinuoSalvo = localStorage.getItem("mh-uso-continuo");
 
   if (nomeSalvo !== null) {
     inputNome.value = nomeSalvo;
@@ -143,6 +145,15 @@ function carregarDados() {
       if (opDosagem[i].value === dosagemSalva) {
         opDosagem[i].checked = true;
       }
+    }
+  }
+
+  if (usoContinuoSalvo !== null) {
+    if (usoContinuoSalvo === "true") {
+      inputUsoContinuo.checked = true;
+    }
+    else {
+      inputUsoContinuo.checked = false;
     }
   }
 }
