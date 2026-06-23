@@ -48,8 +48,6 @@ sectionTb_listaMedicamentos.style.marginTop = "3rem";
 tr.style.display = "flex";
 tr.style.gap = "1rem";  //Nessa única linha tem um distanciamento (gap) de uma coluna para a outra
 
-
-
 const keyNome = "mh-nome";
 const keyEmail = "mh-email";
 const keyMedicamento = "mh-medicamento";
@@ -57,7 +55,11 @@ const keyData = "mh-data";
 const keyQtd = "mh-qtd";
 const keyDosagem = "mh-dosagem";
 const keyUsoContinuo = "mh-uso-continuo"; // chave para o uso contínuo
-  
+const keyTratamentos = "mh_tratamentos"; // chave no ls para armazenar a lista de tratamentos
+
+const mh_tratamentos = []; // criada uma lista para receber cada objeto (cada tratamento)
+
+
 function salvarUsoContinuo() { // função para salvar o estado do checkbox de uso contínuo
   if (inputUsoContinuo.checked) {
     localStorage.setItem("mh-uso-continuo", "true");
