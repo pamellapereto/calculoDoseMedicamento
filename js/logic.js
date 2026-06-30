@@ -44,26 +44,26 @@ var nomeUsuario = "Pamella Pereto";
 var emailMedic = "pamellapereto@gmail.com";
 var data = "2026-04-17T19:53";
 var nomeMedicamento = "loratadina";
-var dosagem = 100;
+var dose = 100;
 var quantidade = 2;
-var resultadoDosagem;
+var resultadodose;
 
 console.log(
     "Os tipos das variáveis são:\n" + 
-    "var nomeUsuario: tipo " + typeof(nomeUsuario) + "\n" +
+    "var nomeUsuario: tipo " + typeof(nomeUsuario) + "\n" + + "-" +
     "var email: tipo " + typeof(emailMedic) + "\n" +
     "var data: tipo " + typeof(data) + "\n" +
     "var nomeMedicamento: tipo " + typeof(nomeMedicamento) + "\n" +
-    "var dosagem: tipo " + typeof(dosagem) + "\n" +
+    "var dose: tipo " + typeof(dose) + "\n" +
     "var quantidade: tipo " + typeof(quantidade)
 );
 
-function calcularDosagem(dosagem, quantidade) {
-    resultadoDosagem = dosagem * quantidade;
-    return resultadoDosagem;
+function calculardose(dose, quantidade) {
+    resultadodose = dose * quantidade;
+    return resultadodose;
 }
 
-calcularDosagem(dosagem, quantidade);
+calculardose(dose, quantidade);
 
 // console.log(
 //     "\nDados do paciente: \n" +
@@ -71,9 +71,9 @@ calcularDosagem(dosagem, quantidade);
 //     "E-mail: " + emailMedic + "\n" +
 //     "Data: " + data + "\n" +
 //     "Nome do medicamento: " + nomeMedicamento + "\n" +
-//     "Dosagem: " + dosagem + "mg\n" +
+//     "dose: " + dose + "mg\n" +
 //     "Quantidade de vezes ao dia: " + quantidade + "\n" +
-//     "Dosagem diária: " + resultadoDosagem + "mg"
+//     "dose diária: " + resultadodose + "mg"
 // );
 
 
@@ -84,9 +84,41 @@ console.log(
      E-mail: ${emailMedic}
      Data: ${data}
      Nome do medicamento: ${nomeMedicamento}
-     Dosagem: ${dosagem}
+     dose: ${dose}
      Quantidade de vezes ao dia: ${quantidade}
-     Dosagem diária: ${resultadoDosagem}
+     dose diária: ${resultadodose}
     `  
 );
 
+
+/* EXERCÍCIO 1: PercorreR com bloco de código for a seguinte array de nomes, mostrando a posição de
+cada item e o valor do item NO CONSOLE*/
+
+var aluno = ["Pamella", "Thayná", "Gustavo", "Ilma"];
+
+for (let i = 0; i < aluno.length; i++) {
+    console.log(`Posição: ${[i]} - Nome: ${aluno[i]}`);
+    // console.log("Posição: " + [i] + " - Nome: " + aluno[i]);
+}
+
+
+/* EXERCÍCIO 2:*/
+/* Mostrar somente números pares do 4 até o 21: VOCÊ NÃO PRECISA DE UMA ARRAY E SÓ PRECISA DO FOR PARA EXIBIR
+SOMENTE NÚMEROS PARES NO CONSOLE*/
+for (let i = 4; i < 21; i = i + 2) {
+    console.log(`Números pares de 4 a 20: ${[i]}`);
+}
+
+/* EXERCÍCIO 3 */
+   /* Calcular um imposto de 10% em cima de preco e exibir o resultado com imposto na tela 
+    Operação aritmética: multiplicao de preco pra saber o imposto sobre cada produto e
+    o resultado do produto com imposto (adição)
+    */
+var preco = [20, 45, 78];
+for (let i = 0; i < preco.length; i++) {
+    let imposto = preco[i] * 0.1;
+    let total = preco[i] + imposto;
+    console.log(`Preço original: R$ ${preco[i]}\n
+        Tributação: ${imposto.toFixed(2)}\n
+        Preço final: ${total.toFixed(2)}`);
+}
