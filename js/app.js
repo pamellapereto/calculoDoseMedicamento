@@ -48,37 +48,57 @@ sectionTb_listaMedicamentos.style.marginTop = "3rem";
 tr.style.display = "flex";
 tr.style.gap = "2rem";  //Nessa única linha tem um distanciamento (gap) de uma coluna para a outra
 
+// OPÇÃO A para verificar se checkbox está marcado 
+// function verificarUsoContinuo() {
+//   if (inputUsoContinuo.checked) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
+// OPÇÃO A para verificar qual dosagem foi selecionada
+// function verificarDosagem() {
+//   for (let i = 0; i < opDosagem.length; i++) {
+//     if (opDosagem[i].checked) {
+//       return opDosagem[i].value;
+//     }
+//   }
+// }
+
+const tratamento = {
+  nome: inputMedicamento.value,
+  data: inputData.value,
+  qtd: inputQtd.value,
+  //OPÇÃO A para chamar a função e verificar estado booleano do checkbox 
+  // usoContinuo: verificarUsoContinuo()
+
+  //OPÇÃO B para verificar se checkbox está marcado e seu estado booleano => ação auto-executável
+  usoContinuo: (() => {
+    if (inputUsoContinuo.checked) {
+      return true;
+    } else {
+      return false;
+    }
+  }) (),
+
+  //OPÇÃO A para chamar a função e verificar valor da dosagem selecionada
+  // dosagem: verificarDosagem(),
+
+  //OPÇÃO B para verificar qual dosagem foi selecionada e seu valor => ação auto-executável
+  dosagem: (() => {
+    for (let i = 0; i < opDosagem.length; i++) {
+      if (opDosagem[i].checked) {
+        return opDosagem[i].value;
+      }
+    }
+  }) (),
+}
 
 const keyNome = "mh-nome";
 const keyEmail = "mh-email";
-const keyMedicamento = "mh-medicamento";
-const keyData = "mh-data";
-const keyQtd = "mh-qtd";
-const keyDosagem = "mh-dosagem";
-const keyUsoContinuo = "mh-uso-continuo"; // chave para o uso contínuo
-  
-function salvarUsoContinuo() { // função para salvar o estado do checkbox de uso contínuo
-  if (inputUsoContinuo.checked) {
-    localStorage.setItem("mh-uso-continuo", "true");
-  }
-}
+const keyTratamento = "mh-tratamento";
 
-
-function salvarDosagem() {
-    console.clear();
-  for (let i = 0; i < opDosagem.length; i++) {
-    if (opDosagem[i].checked) {
-      console.log(typeof(opDosagem[i].value) + " - " + opDosagem[i].value);
-      localStorage.setItem("mh-dosagem", opDosagem[i].value);
-    }
-  }
-}
-
-
-for (let i = 0; i < opDosagem.length; i++) {
-  opDosagem[i].addEventListener("change", salvarDosagem);
-}
 
 function salvarNome() {
   localStorage.setItem("mh-nome", inputNome.value);
@@ -87,24 +107,14 @@ function salvarNome() {
 function salvarEmail() {
   localStorage.setItem("mh-email", inputEmail.value);
 }
-function salvarMedicamento() {
-  localStorage.setItem("mh-medicamento", inputMedicamento.value);
-}
-
-function salvarData() {
-  localStorage.setItem("mh-data", inputData.value);
-}
-
-function salvarQtd() {
-  localStorage.setItem("mh-qtd", inputQtd.value);
-}
 
 
 function saveLocal() {
-  salvarMedicamento();
-  salvarDosagem();
-  salvarQtd();
-  salvarData();
+  let tratamentos = JSON.parse(localStorage.getItem(keyTratamento)) || [];
+  tratamentos.push(tratamento);
+  localStorage.setItem(keyTratamento, JSON.stringify(tratamentos));
+
+  //TAREFA: RENDERIZAR NOVAMENTE A TABELA COM OS DADOS ATUALIZADOS => chame a função carregarDados()
 }
 
 inputNome.addEventListener("input", salvarNome);
@@ -113,44 +123,24 @@ inputEmail.addEventListener("input", salvarEmail);
 function carregarDados() {
   const nomeSalvo = localStorage.getItem("mh-nome");
   const emailSalvo = localStorage.getItem("mh-email");
-  const medicamentoSalvo = localStorage.getItem("mh-medicamento");
-  const dataSalva = localStorage.getItem("mh-data");
-  const qtdSalva = localStorage.getItem("mh-qtd");
-  const dosagemSalva = localStorage.getItem("mh-dosagem");
+  const medicamentoSalvo = localStorage.getItem(keyTratamento) ? JSON.parse(localStorage.getItem(keyTratamento)).nome : null;
+  const dataSalva = localStorage.getItem(keyTratamento) ? JSON.parse(localStorage.getItem(keyTratamento)).data : null;
+  const qtdSalva = localStorage.getItem(keyTratamento) ? JSON.parse(localStorage.getItem(keyTratamento)).qtd : null;
+  const dosagemSalva = localStorage.getItem(keyTratamento) ? JSON.parse(localStorage.getItem(keyTratamento)).dosagem : null;
 
   if (nomeSalvo !== null) {
     inputNome.value = nomeSalvo;
   }
-
   if (emailSalvo !== null) {
     inputEmail.value = emailSalvo;
-  }
+  } 
 
-  if (medicamentoSalvo !== null) {
-    inputMedicamento.value = medicamentoSalvo;
-  }
-
-  if (dataSalva !== null) {
-    inputData.value = dataSalva;
-  }
-
-  if (qtdSalva !== null) {
-    inputQtd.value = qtdSalva;
-  }
-
-  if(dosagemSalva !== null) {
-    for (let i = 0; i < opDosagem.length; i++) {
-      if (opDosagem[i].value === dosagemSalva) {
-        opDosagem[i].checked = true;
-      }
-    }
-  }
+  //TAREFA: RENDERIZAÇÃO DA TABELA COM OS DADOS SALVOS NO LOCALSTORAGE
 }
 
 function resetar() {
   localStorage.clear();
 }
 
-// resetar();
 carregarDados();
 
