@@ -49,51 +49,25 @@ tr.style.display = "flex";
 tr.style.gap = "2rem";  //Nessa única linha tem um distanciamento (gap) de uma coluna para a outra
 
 // OPÇÃO A para verificar se checkbox está marcado 
-// function verificarUsoContinuo() {
-//   if (inputUsoContinuo.checked) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
+function verificarUsoContinuo() {
+  if (inputUsoContinuo.checked) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // OPÇÃO A para verificar qual dosagem foi selecionada
-// function verificarDosagem() {
-//   for (let i = 0; i < opDosagem.length; i++) {
-//     if (opDosagem[i].checked) {
-//       return opDosagem[i].value;
-//     }
-//   }
-// }
-
-const tratamento = {
-  nome: inputMedicamento.value,
-  data: inputData.value,
-  qtd: inputQtd.value,
-  //OPÇÃO A para chamar a função e verificar estado booleano do checkbox 
-  // usoContinuo: verificarUsoContinuo()
-
-  //OPÇÃO B para verificar se checkbox está marcado e seu estado booleano => ação auto-executável
-  usoContinuo: (() => {
-    if (inputUsoContinuo.checked) {
-      return true;
-    } else {
-      return false;
+function verificarDosagem() {
+  for (let i = 0; i < opDosagem.length; i++) {
+    if (opDosagem[i].checked) {
+      return opDosagem[i].value;
     }
-  }) (),
-
-  //OPÇÃO A para chamar a função e verificar valor da dosagem selecionada
-  // dosagem: verificarDosagem(),
-
-  //OPÇÃO B para verificar qual dosagem foi selecionada e seu valor => ação auto-executável
-  dosagem: (() => {
-    for (let i = 0; i < opDosagem.length; i++) {
-      if (opDosagem[i].checked) {
-        return opDosagem[i].value;
-      }
-    }
-  }) (),
+  }
+  return null; // Retorna null se nenhuma dosagem estiver selecionada
 }
+
+
 
 const keyNome = "mh-nome";
 const keyEmail = "mh-email";
@@ -110,6 +84,53 @@ function salvarEmail() {
 
 
 function saveLocal() {
+
+  const tratamento = {
+  nome: inputMedicamento.value,
+  data: inputData.value,
+  qtd: inputQtd.value,
+  //OPÇÃO A para chamar a função e verificar estado booleano do checkbox 
+  // usoContinuo: verificarUsoContinuo()
+
+  //OPÇÃO B para verificar se checkbox está marcado e seu estado booleano => ação auto-executável
+  usoContinuo: (() => {
+    if (inputUsoContinuo.checked) {
+      return true;
+    } else {
+      return false;
+    }
+  }),
+
+  //OPÇÃO A para chamar a função e verificar valor da dosagem selecionada
+  // dosagem: verificarDosagem(),
+
+  //OPÇÃO B para verificar qual dosagem foi selecionada e seu valor => ação auto-executável
+  dosagem: (() => {
+    for (let i = 0; i < opDosagem.length; i++) {
+      if (opDosagem[i].checked) {
+        return opDosagem[i].value;
+      }
+    }
+    return null; // Retorna null se nenhuma dosagem estiver selecionada
+  }) (),
+}
+  inputMedicamento.addEventListener("input", () => {
+    tratamento.nome = inputMedicamento.value;
+  });
+
+  inputData.addEventListener("input", () => {
+    tratamento.data = inputData.value;
+  });
+
+  inputQtd.addEventListener("input", () => {
+    tratamento.qtd = inputQtd.value;
+  });
+
+  inputUsoContinuo.addEventListener("change", () => {
+    tratamento.usoContinuo = inputUsoContinuo.checked;
+  });
+
+
   let tratamentos = JSON.parse(localStorage.getItem(keyTratamento)) || [];
   tratamentos.push(tratamento);
   localStorage.setItem(keyTratamento, JSON.stringify(tratamentos));

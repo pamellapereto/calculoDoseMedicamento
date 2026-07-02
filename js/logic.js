@@ -122,3 +122,8 @@ for (let i = 0; i < preco.length; i++) {
         Tributação: ${imposto.toFixed(2)}\n
         Preço final: ${total.toFixed(2)}`);
 }
+const frutas = ['Maçã', 'Banana', 'Laranja'];
+
+const ultimaFruta = frutas.pop(); 
+
+console.log(frutas); // Resultado: ['Maçã', 'Banana']
